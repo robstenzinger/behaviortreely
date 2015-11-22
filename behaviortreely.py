@@ -5,7 +5,7 @@ behaviortreely.py is a friendly behavior tree implementation
 it will run behavior trees defined in JSON format
 
 1) prepare your tree JSON
-2) instantiate a treely BT, load your tree JSON
+2) instantiate a behaviortreely BT, load your tree JSON
 3) register your task handlers, listeners to trigger on task events
 4) run the tree: once, many times, ongoing, etc.
 	- running via "start" activates the tree's tick time_started
@@ -153,7 +153,7 @@ class BehaviorTree:
 			self.nodes[self.tree["slug"]]["config"] = self.tree
 
 			# root node should be a decorator, determined in the root node's config
-			module = __import__("treely")
+			module = __import__("behaviortreely")
 			class_ = getattr(module, self.nodes[self.tree["slug"]]["config"]["type"])
 			self.nodes[self.tree["slug"]]["node"] = class_(self.tree["slug"])
 		else:
@@ -574,7 +574,7 @@ if __name__ == '__main__':
 	test_json = """
 {
 	"nodeName":"root of behavior XYZ",
-	"goal":"to test treely",
+	"goal":"to test behaviortreely",
 	"description":"this is the root",
 	"slug":"root",
 	"type":"LimitTime",
